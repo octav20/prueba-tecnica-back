@@ -16,8 +16,8 @@ CREATE TABLE Empleados (
     Nombre              NVARCHAR(100) NOT NULL,
     ApellidoPaterno     NVARCHAR(100) NOT NULL,
     ApellidoMaterno     NVARCHAR(100) NOT NULL,
-    FechaNacimiento     DATE NOT NULL,
-    FechaAlta           DATE NOT NULL,
+    FechaNacimiento     DATETIME NOT NULL,
+    FechaAlta           DATETIME NOT NULL,
     Sueldo              DECIMAL(10, 2) NOT NULL,
     Correo              NVARCHAR(255) NOT NULL,
     Estatus             BIT NOT NULL DEFAULT 1, -- 1=Activo, 0=Inactivo
@@ -42,8 +42,8 @@ GO
 CREATE TABLE Proyectos (
     ID_Proyecto         INT IDENTITY(1,1) NOT NULL,
     NombreProyecto      NVARCHAR(200) NOT NULL,
-    FechaInicio         DATE NOT NULL,
-    FechaFin            DATE NOT NULL,
+    FechaInicio         DATETIME NOT NULL,
+    FechaFin            DATETIME NOT NULL,
     Estatus             BIT NOT NULL DEFAULT 1, -- 1=Activo/En curso, 0=Finalizado/Inactivo
     
     -- CLAVE PRIMARIA

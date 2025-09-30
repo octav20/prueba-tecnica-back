@@ -23,11 +23,25 @@ const Empleado = sequelize.define('Empleado', {
     },
     FechaNacimiento: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: false,
+      get() {
+  const raw = this.getDataValue('FechaNacimiento');
+  if (!raw) return null;
+
+  const dateObj = raw instanceof Date ? raw : new Date(raw);
+  return dateObj.toISOString().slice(0, 10); // YYYY-MM-DD
+  }
     },
     FechaAlta: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        allowNull: false,
+             get() {
+  const raw = this.getDataValue('FechaAlta');
+  if (!raw) return null;
+
+  const dateObj = raw instanceof Date ? raw : new Date(raw);
+  return dateObj.toISOString().slice(0, 10); // YYYY-MM-DD
+  }
     },
     Sueldo: {
         type: DataTypes.DECIMAL(10, 2),

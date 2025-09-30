@@ -151,14 +151,17 @@ exports.updateProyecto = async (req, res) => {
         return res.status(400).json({ msg: 'Debe proporcionar Nombre, FechaInicio y FechaFin.' });
     }
     
-    const dateValidation = validateProjectDates(FechaInicio, FechaFin);
-    if (!dateValidation.valid) {
-        return res.status(400).json({ msg: dateValidation.msg });
-    }
+
+    const updatePayload = {
+  NombreProyecto,
+  FechaInicio,
+  FechaFin
+};
+
 
     try {
         const [updatedRows] = await Proyecto.update(
-            { NombreProyecto, FechaInicio, FechaFin },
+      updatePayload,
             { where: { ID_Proyecto: id } }
         );
 
@@ -177,6 +180,8 @@ exports.updateProyecto = async (req, res) => {
         res.status(500).json({ msg: 'Error al actualizar proyecto.', details: err.message });
     }
 };
+
+
 //  (DELETE /api/proyectos/:id)
 exports.deleteProyecto = async (req, res) => {
     const {id} = req.params;

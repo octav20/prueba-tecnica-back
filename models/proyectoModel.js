@@ -15,11 +15,25 @@ const Proyecto = sequelize.define('Proyecto', {
     },
     FechaInicio: {
         type: DataTypes.DATEONLY, 
-        allowNull: false
+        allowNull: false,
+            get() {
+   const raw = this.getDataValue('FechaInicio');
+  if (!raw) return null;
+
+  const dateObj = raw instanceof Date ? raw : new Date(raw);
+  return dateObj.toISOString().slice(0, 10); // YYYY-MM-DD
+  }
     },
     FechaFin: {
         type: DataTypes.DATEONLY, 
         allowNull: false,
+          get() {
+  const raw = this.getDataValue('FechaFin');
+  if (!raw) return null;
+
+  const dateObj = raw instanceof Date ? raw : new Date(raw);
+  return dateObj.toISOString().slice(0, 10); // YYYY-MM-DD
+  }
     },
     Estatus: {
         type: DataTypes.BOOLEAN,
